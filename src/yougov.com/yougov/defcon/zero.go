@@ -5,17 +5,19 @@ import (
 	zmq "github.com/alecthomas/gozmq"
 )
 
-const url = "tcp://vdev-tabo.paix.yougov.local:8888"
+type ZeroConsumer struct {
+	url string
+}
 
-func Zero() {
+func (z *ZeroConsumer) Subscribe() {
 	context, _ := zmq.NewContext()
-	defer context.close()
+	defer context.Close()
 
 	socket, _ := context.NewSocket(zmq.SUB)
-	defer socket.close()
+	defer socket.Close()
 
-	socket.Connect(url)
-	fmt.Println("Zero listening on "+url)
+	socket.Connect(z.url)
+	fmt.Println("Zero listening on "+z.url)
 
 	socket.SetSubscribe("")
 
@@ -23,4 +25,9 @@ func Zero() {
 		msg, _ := socket.Recv(0)
 		fmt.Println(string(msg))
 	}
+}
+
+func NewZeroConsumer(url string) *ZeroConsumer {
+	z := &ZeroConsumer{url: url}
+	return z
 }
