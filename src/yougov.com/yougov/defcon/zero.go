@@ -9,7 +9,9 @@ type ZeroConsumer struct {
 	url string
 }
 
-func (z *ZeroConsumer) Subscribe() {
+type ZeroConsumerCallback func(string, ...interface{})
+
+func (z *ZeroConsumer) Consume(callback ZeroConsumerCallback) {
 	context, _ := zmq.NewContext()
 	defer context.Close()
 
@@ -17,13 +19,14 @@ func (z *ZeroConsumer) Subscribe() {
 	defer socket.Close()
 
 	socket.Connect(z.url)
-	fmt.Println("Zero listening on "+z.url)
+	fmt.Println("Zero listening on " + z.url)
 
 	socket.SetSubscribe("")
 
 	for {
 		msg, _ := socket.Recv(0)
 		fmt.Println(string(msg))
+		callback("complete", string(msg))
 	}
 }
 

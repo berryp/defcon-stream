@@ -12,7 +12,6 @@
       var socket = io.connect();
 
       socket.on('connect', function () {
-        socket.emit('complete', 'Booya!', 'Why hello there.', 1)
       });
 
       socket.on('complete', function (message) {
