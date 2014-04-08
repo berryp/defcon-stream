@@ -5,7 +5,7 @@ import (
 	"github.com/googollee/go-socket.io"
 	"log"
 	"net/http"
-	"yougov.com/yougov/defcon"
+	"defcon/zero"
 )
 
 const port = 8080
@@ -50,7 +50,7 @@ func main() {
 
 	sio.Handle("/", appHandler(mainHandler))
 
-	consumer := defcon.NewZeroConsumer(url)
+	consumer := zero.NewZeroConsumer(url)
 	go consumer.Consume(sio.Broadcast)
 
 	fmt.Printf("Listening on 0.0.0.0:%v", port)

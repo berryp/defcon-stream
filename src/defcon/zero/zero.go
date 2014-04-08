@@ -1,4 +1,4 @@
-package defcon
+package zero
 
 import (
 	"fmt"
