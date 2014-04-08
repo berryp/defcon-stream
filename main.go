@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-    "log"
+	"log"
 	"net/http"
 )
 
@@ -25,12 +25,12 @@ func mainHandler(w http.ResponseWriter, r *http.Request) error {
 
 	http.ServeFile(w, r, staticRoot+path)
 
-    return nil
+	return nil
 }
 
 func main() {
-    http.Handle("/", appHandler(mainHandler))
+	http.Handle("/", appHandler(mainHandler))
 
-    fmt.Println("Listening on 0.0.0.0:8080")
-    log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Println("Listening on 0.0.0.0:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
