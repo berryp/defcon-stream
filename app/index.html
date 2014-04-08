@@ -9,11 +9,14 @@
 
     <script src="js/socket.io.js"></script>
     <script>
-      var socket = io('http://10.32.21.8:8080');
+      var socket = io.connect();
+
       socket.on('connect', function () {
-        socket.on('complete', function (message) {
-          console.log('COMPLETE: ' + JSON.stringify(message));
-        });
+        socket.emit('complete', 'Booya!', 'Why hello there.', 1)
+      });
+
+      socket.on('complete', function (message) {
+        console.log('COMPLETE: ' + message);
       });
     </script>
   </body>
