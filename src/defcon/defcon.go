@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"defcon/zero"
+	"os"
 )
 
 const port = 8080
@@ -38,7 +39,7 @@ func onConnect(ns *socketio.NameSpace) {
 }
 
 func main() {
-	url := "tcp://vdev-tabo.PAIX.yougov.local:8888"
+	url := os.Getenv("DEFCON_ZEROMQ_URL")
 
 	sock_config := &socketio.Config{}
 	sock_config.HeartbeatTimeout = 2
@@ -53,6 +54,8 @@ func main() {
 	consumer := zero.NewZeroConsumer(url)
 	go consumer.Consume(sio.Broadcast)
 
-	fmt.Printf("Listening on 0.0.0.0:%v", port)
+	port := os.Getenv("PORT")
+
+	fmt.Printf("Listening on 0.0.0.0:%v\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), sio))
 }
