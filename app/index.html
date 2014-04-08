@@ -1,1 +1,20 @@
-Hello, World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DEFCON Stream</title>
+  </head>
+  <body>
+    <h1>DEFCON Stream</h1>
+
+    <script src="js/socket.io.js"></script>
+    <script>
+      var socket = io('http://10.32.21.8:8080');
+      socket.on('connect', function () {
+        socket.on('complete', function (message) {
+          console.log('COMPLETE: ' + JSON.stringify(message));
+        });
+      });
+    </script>
+  </body>
+</html>
