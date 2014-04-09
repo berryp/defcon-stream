@@ -2,7 +2,7 @@ package zero
 
 import (
 	"fmt"
-	zmq "github.com/alecthomas/gozmq"
+	zmq "github.com/pebbe/zmq4"
 )
 
 type ZeroConsumer struct {
@@ -12,10 +12,7 @@ type ZeroConsumer struct {
 type ZeroConsumerCallback func(string, ...interface{})
 
 func (z *ZeroConsumer) Consume(callback ZeroConsumerCallback) {
-	context, _ := zmq.NewContext()
-	defer context.Close()
-
-	socket, _ := context.NewSocket(zmq.SUB)
+	socket, _ := zmq.NewSocket(zmq.SUB)
 	defer socket.Close()
 
 	socket.Connect(z.url)
