@@ -1,4 +1,6 @@
-// +build !zmq_3_x,!zmq_4_x
+// +build ignore
+
+// !zmq_3_x,!zmq_4_x
 
 /*
   Copyright 2010-2012 Alec Thomas

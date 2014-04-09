@@ -1,5 +1,3 @@
-// +build zmq_4_x
-
 /*
   Copyright 2010-2012 Alec Thomas
 

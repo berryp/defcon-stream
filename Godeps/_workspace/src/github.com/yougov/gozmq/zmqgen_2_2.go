@@ -1,4 +1,6 @@
-// +build !zmq_2_1,!zmq_3_x,!zmq_4_x
+// +build ignore
+
+// !zmq_2_1,!zmq_3_x,!zmq_4_x
 //
 
 package gozmq

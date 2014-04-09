@@ -1,6 +1,3 @@
-// +build zmq_4_x
-//
-
 package gozmq
 
 import (
