@@ -1,16 +1,15 @@
 package main
 
 import (
+	"defcon/zero"
 	"fmt"
 	"github.com/googollee/go-socket.io"
 	"log"
 	"net/http"
-	"defcon/zero"
 	"os"
 )
 
-const port = 8080
-const staticRoot = "app"
+const staticRoot = "src/defcon/app"
 
 type appHandler func(http.ResponseWriter, *http.Request) error
 
