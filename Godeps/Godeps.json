@@ -8,12 +8,12 @@
 			"Rev": "c17ad62118ea511e1051721b429779fa40bddc74"
 		},
 		{
-			"ImportPath": "github.com/googollee/go-socket.io",
-			"Rev": "56c4bd8ef8fd405c55e8d47766ecee0fdd01fa30"
+			"ImportPath": "github.com/alecthomas/gozmq",
+			"Rev": "9c16a764d1474ff11accb17676a2686d8c6f4abd"
 		},
 		{
-			"ImportPath": "github.com/op/zenio",
-			"Rev": "7428829fd15f9f26a7cdee38c7cf4919593a4a95"
+			"ImportPath": "github.com/googollee/go-socket.io",
+			"Rev": "56c4bd8ef8fd405c55e8d47766ecee0fdd01fa30"
 		}
 	]
 }
