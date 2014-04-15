@@ -19,7 +19,7 @@ func (z *ZeroConsumer) Consume(callback ZeroConsumerCallback) {
 	defer socket.Close()
 
 	socket.Connect(z.url)
-	fmt.Println("Zero listening on " + z.url)
+	fmt.Println("[Zero] Listening on " + z.url)
 
 	socket.SetSubscribe("")
 

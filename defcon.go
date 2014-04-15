@@ -14,7 +14,7 @@ const staticRoot = "src/defcon/app"
 type appHandler func(http.ResponseWriter, *http.Request) error
 
 func (fn appHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Path)
+	fmt.Printf("[Web] %v %v 200 OK\n", r.Method, r.URL.Path)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	if err := fn(w, r); err != nil {
 		http.Error(w, err.Error(), 500)
@@ -34,7 +34,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) error {
 }
 
 func onConnect(ns *socketio.NameSpace) {
-	fmt.Println("connected:", ns.Id(), "in channel", ns.Endpoint())
+	fmt.Println("[Socket] Connected:", ns.Id(), "in channel", ns.Endpoint())
 }
 
 func main() {
@@ -43,6 +43,8 @@ func main() {
 	sock_config := &socketio.Config{}
 	sock_config.HeartbeatTimeout = 2
 	sock_config.ClosingTimeout = 4
+
+	fmt.Println("*** STARTING DEFCON ***")
 
 	sio := socketio.NewSocketIOServer(sock_config)
 
@@ -55,6 +57,6 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	fmt.Printf("Listening on 0.0.0.0:%v\n", port)
+	fmt.Printf("[Web] Listening on 0.0.0.0:%v\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), sio))
 }
