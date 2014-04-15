@@ -2,7 +2,7 @@ package zero
 
 import (
 	"fmt"
-	zmq "github.com/yougov/gozmq"
+	zmq "github.com/alecthomas/gozmq"
 )
 
 type ZeroConsumer struct {
