@@ -39,7 +39,11 @@ func onConnect(ns *socketio.NameSpace) {
 }
 
 func main() {
-	dcConfig = config.FromEnv()
+	if _, err := os.Stat("settings.yaml"); err == nil {
+		dcConfig = config.FromYaml("settings.yaml")
+	} else {
+		dcConfig = config.FromEnv()
+	}
 
 	sock_config := &socketio.Config{}
 	sock_config.HeartbeatTimeout = 2

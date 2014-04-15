@@ -1,6 +1,9 @@
 package config
 
 import (
+	"gopkg.in/yaml.v1"
+	"io/ioutil"
+	"log"
 	"os"
 	"strconv"
 )
@@ -10,9 +13,25 @@ const defaultHttpPort = 8080
 const defaultZeroMqUrl = "http://localhost:8888"
 
 type DefconConfig struct {
-	StaticRoot string
-	HttpPort   int
-	ZeroMqUrl  string
+	StaticRoot string `yaml:"static_root"`
+	HttpPort   int    `yaml:"port"`
+	ZeroMqUrl  string `yaml:"zeromq_url"`
+}
+
+func FromYaml(filename string) DefconConfig {
+	dc := DefconConfig{}
+
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Fatalf("Error: %v", err)
+	}
+
+	err = yaml.Unmarshal([]byte(data), &dc)
+	if err != nil {
+		log.Fatalf("Error: %v", err)
+	}
+
+	return dc
 }
 
 func FromEnv() DefconConfig {
