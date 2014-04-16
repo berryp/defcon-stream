@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+go get -tags zmg_4_x github.com/alecthomas/gozmq

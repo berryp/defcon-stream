@@ -1,6 +1,9 @@
-/bin/
+/bin/*
+!/bin/steps/
 /pkg/
 /tmp/
 *.swo
 *.swp
 /dist/
+/src/*
+!/src/defcon/
